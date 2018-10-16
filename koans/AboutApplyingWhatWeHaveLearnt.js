@@ -105,21 +105,21 @@ describe("About Applying What We Have Learnt", function() {
     expect(ingredientCount['mushrooms']).toBe(2);
   });
 
-  it("should count the ingredient occurrence (functional)", function () {
-    var ingredientCount = { "{ingredient name}": 0 };
+  it("should count the ingredient occurrence (functional)", function (topping) {
+    // var ingredientCount = { "{ingredient name}": 0 };
+    var ingredients = []
+    products.map(function(obj){
+      ingredients.push(obj.ingredients);
+    })
 
-    /* chain() together map(), flatten() and reduce() */
-    function isIngredients(array){
-      return array.type === 'ingredients'
-    }
+    var arr = _.flatten(ingredients)
+    
+    return arr.reduce((n, x) => n + (x === topping), 0);
 
-    ingredientCount = products
-    .map(isIngredients)
-    .flat()
-
-    expect(ingredientCount['mushrooms']).toBe(2);
+    expect('mushrooms').toBe(2);
+    expect('sundried tomatoes').toBe(2);
   });
-  
+
 
   /*********************************************************************************/
   /* UNCOMMENT FOR EXTRA CREDIT */
